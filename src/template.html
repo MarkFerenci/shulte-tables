@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schulte Table Game</title>
+  <style>
+    /* INLINE_CSS */
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Schulte Table</h1>
+    <div id="currentTarget" class="current-target">Find number: 1</div>
+    <div class="table" id="shulteTable"></div>
+    <div class="buttons">
+      <button id="newGame">New Game</button>
+      <button id="settingsBtn" class="icon-btn" aria-label="Settings">⚙</button>
+    </div>
+    <div id="timer">Time: 0s</div>
+  </div>
+
+  <dialog id="settingsDialog">
+    <div class="dialog-content">
+      <h2>Settings</h2>
+      <label class="setting-row">
+        <span>Grid Size</span>
+        <select id="gridSizeSelect">
+          <option value="3">3x3</option>
+          <option value="4">4x4</option>
+          <option value="5">5x5</option>
+          <option value="6">6x6</option>
+        </select>
+      </label>
+      <label class="switch-label setting-row">
+        <span>Wave on touch</span>
+        <div class="switch">
+          <input type="checkbox" id="waveToggle" checked />
+          <span class="slider"></span>
+        </div>
+      </label>
+      <button id="closeSettings">Close</button>
+    </div>
+  </dialog>
+
+  <script>/* INLINE_JS */</script>
+</body>
+
+</html>

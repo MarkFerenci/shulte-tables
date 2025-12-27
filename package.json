@@ -1,0 +1,13 @@
+{
+  "name": "shulte-tables",
+  "private": true,
+  "scripts": {
+    "dev": "bun run --watch scripts/serve.ts",
+    "build": "bun run scripts/build.ts",
+    "serve": "bun run scripts/serve.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.3.0"
+  }
+}

@@ -1,0 +1,331 @@
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #34495e;
+  --success-color: #27ae60;
+  --error-color: #e74c3c;
+  --wave-color: rgba(52, 152, 219, 0.4);
+  --cell-bg: #f0f0f0;
+  --cell-border: #ccc;
+  --container-bg: #ffffff;
+}
+
+.container {
+  max-width: min(800px, 100%);
+  margin: 0 auto;
+  text-align: center;
+  padding: clamp(12px, 4vw, 24px);
+  padding-left: env(safe-area-inset-left, clamp(12px, 4vw, 24px));
+  padding-right: env(safe-area-inset-right, clamp(12px, 4vw, 24px));
+  padding-bottom: env(safe-area-inset-bottom, clamp(12px, 4vw, 24px));
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.current-target {
+  font-size: clamp(20px, 5vw, 28px);
+  font-weight: bold;
+  margin: 15px 0;
+  color: var(--primary-color);
+  min-height: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table {
+  display: grid;
+  /* Columns are set dynamically in game.ts */
+  gap: clamp(2px, 1vw, 8px);
+  max-width: min(600px, 95vw);
+  margin: clamp(10px, 3vw, 20px) auto;
+  width: 100%;
+}
+
+.cell {
+  aspect-ratio: 1;
+  background-color: var(--cell-bg);
+  border: 1px solid var(--cell-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(16px, 4vw, 24px);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  user-select: none;
+  border-radius: 4px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.cell:hover {
+  background-color: #e0e0e0;
+}
+
+.cell:active {
+  background-color: #d0d0d0;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: clamp(14px, 3vw, 16px);
+  margin: 8px;
+  cursor: pointer;
+  border: 1px solid var(--primary-color);
+  background: white;
+  border-radius: 4px;
+  transition: all 0.2s;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:hover {
+  background-color: #f0f0f0;
+}
+
+#timer {
+  font-size: clamp(16px, 4vw, 20px);
+  margin-top: 10px;
+  color: var(--secondary-color);
+}
+
+.current-target.victory {
+  color: var(--success-color);
+  font-size: clamp(18px, 6vw, 32px);
+  animation: pulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.05);
+  }
+}
+
+/* Buttons row */
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 15px 0;
+}
+
+/* Settings button */
+.icon-btn {
+  background: white;
+  border: 1px solid var(--primary-color);
+  font-size: 22px;
+  cursor: pointer;
+  padding: 0 16px;
+  border-radius: 4px;
+  transition: background 0.2s, transform 0.2s;
+  line-height: 1;
+}
+
+.icon-btn:hover {
+  background: #f0f0f0;
+  transform: rotate(30deg);
+}
+
+/* Dialog */
+dialog {
+  border: none;
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: min(350px, 90vw);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.dialog-content {
+  padding: clamp(16px, 5vw, 24px);
+}
+
+.dialog-content h2 {
+  margin-top: 0;
+  color: var(--primary-color);
+  font-size: clamp(20px, 5vw, 24px);
+}
+
+/* Settings Rows */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 20px 0;
+  cursor: pointer;
+  font-size: clamp(14px, 4vw, 16px);
+}
+
+select {
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--cell-border);
+  background-color: white;
+  cursor: pointer;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--cell-border);
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked+.slider {
+  background-color: var(--success-color);
+}
+
+input:checked+.slider:before {
+  transform: translateX(24px);
+}
+
+#closeSettings {
+  width: 100%;
+  margin: 10px 0 0 0;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+#closeSettings:hover {
+  background: var(--secondary-color);
+}
+
+/* Wave animation */
+.wave {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--wave-color);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 999;
+  animation: wave-expand 0.6s cubic-bezier(0, 0.5, 0.5, 1) forwards;
+}
+
+@keyframes wave-expand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.8;
+  }
+
+  100% {
+    width: clamp(200px, 50vw, 300px);
+    height: clamp(200px, 50vw, 300px);
+    opacity: 0;
+  }
+}
+
+/* Error Cross Animation */
+.error-cross {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1000;
+  animation: error-pop 0.4s ease-out forwards;
+}
+
+.error-cross::before,
+.error-cross::after {
+  content: "";
+  position: absolute;
+  width: 141.42%;
+  height: clamp(4px, 1vw, 6px);
+  background-color: var(--error-color);
+  border-radius: 3px;
+  top: 50%;
+  left: 50%;
+}
+
+.error-cross::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.error-cross::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+@keyframes error-pop {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Media Queries for fine-tuning */
+@media (max-width: 480px) {
+  .buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  button,
+  .icon-btn {
+    margin: 4px 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1000px;
+  }
+
+  .table {
+    max-width: 700px;
+  }
+}
